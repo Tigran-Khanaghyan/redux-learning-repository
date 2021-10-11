@@ -1,20 +1,8 @@
-export const increment = (number = 1) => {
-  return {
-    type: "INCREMENT",
-    payload: number,
-  };
-};
+const addTodo = (todo) => {
+    return {
+        type: 'ADD-TODO',
+        payload: todo
+    }
+}
 
-export const decrement = (number = 1) => {
-  return {
-    type: "DECREMENT",
-    payload: number,
-  };
-};
-
-export const setStep = (number) => {
-  return {
-    type: "SET-STEP",
-    payload: number,
-  };
-};
+export default addTodo
