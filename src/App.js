@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from 'nanoid'
 import addTodo from "./actions";
+import { deleteTodo } from "./actions/handleTodo";
 
 function App() {
   const [todo, setTodo] = useState("");
   const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  const id = nanoid()
 
   const handleClick = () => {
-    dispatch(addTodo(todo));
+    dispatch(addTodo(todo, id))
     setTodo("");
   };
+  const handleDelete = (event) => {
+    const todoId = event.target.id
+    dispatch(deleteTodo(todoId))
+  }
 
   return (
     <div>
@@ -23,11 +30,11 @@ function App() {
       <ul>
         {todos.map((todo) => {
           return (
-            <li key={todo.toString()}>
-              {todo}
+            <li key={todo.id}>
+              {todo.todo}
               <button>Done</button>
               <button>Edit</button>
-              <button>Delete</button>
+              <button id={todo.id} onClick={handleDelete}>Delete</button>
             </li>
           );
         })}
