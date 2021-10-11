@@ -1,7 +1,8 @@
 const todosReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD-TODO":
-      return state.push(action.payload);
+      state.push(action.payload);
+      return state;
     default:
       return state;
   }
